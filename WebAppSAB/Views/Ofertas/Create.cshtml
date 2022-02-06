@@ -1,0 +1,52 @@
+﻿@using Modelo.Entidades
+@model Oferta
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>FORMULARIO DE INGRESO PARA UNA NUEVA OFERTA</h1>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Nuevo Oferta</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+
+            <form method="post" asp-action="Create">
+                <div class="form-group">
+                    <label class="control-label">Fecha de Inicio / Ingreso: </label>
+                    <input class="form-control" asp-for="FechaInicio" />
+                </div>
+                <div class="form-group">
+                    <label c9lass="control-label">Carrera: </label>
+                    <input class="form-control" asp-for="Carrera" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Costo: </label>
+                    <input class="form-control" asp-for="Costo" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Duración: </label>
+                    <input class="form-control" asp-for="Duracion" />
+                </div>      
+                <div class="form-group">
+                    <label class="control-label">Modalidad: </label>
+                    <input class="form-control" asp-for="Modalidad" />
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Ingresar Oferta" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@using Modelo.Entidades
+@model Institucion
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Formulario de Ingreso de una nueva Institución</h1>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Nueva Institucion</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+
+            <form method="post" asp-action="Create">
+                <div class="form-group">
+                    <label class="control-label">Nombre: </label>
+                    <input class="form-control" asp-for="Nombre" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Tipo: </label>
+                    <input class="form-control" asp-for="Tipo" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Pais: </label>
+                    <input class="form-control" asp-for="Pais" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Email: </label>
+                    <input class="form-control" asp-for="Email" />
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Crear Institucion" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

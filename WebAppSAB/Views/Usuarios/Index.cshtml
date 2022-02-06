@@ -1,0 +1,80 @@
+﻿@using Modelo.Entidades
+@model IEnumerable<Usuario>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de Usuarios</h1>
+<p>A continuación se presenta la lista de Usuarios del Sistema de Aprobación de Becas</p>
+
+<div class = "container">
+    <div class="row">     
+        <div class="col-sm-6">
+            <h3>Usuarios</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn alert-success d-block"
+                asp-controller="Usuarios" asp-action="Create">
+                Crear Nuevo Registro
+            </a>
+        </div>
+    </div>
+
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">
+                &times;
+            </span>
+        </button>
+    </div>
+    }
+
+    <div class = "row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Nombres</td>
+                    <td>Apellidos</td>
+                    <td>Cédula</td>
+                    <td>Ciudad</td>
+                    <td>Fecha de Nacimiento</td>
+                    <td>Celular</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach(Usuario usuario in Model)
+                {
+                    <tr>
+                        <td>@usuario.UsuarioId</td>
+                        <td>@usuario.Nombres</td>
+                        <td>@usuario.Apellidos</td>
+                        <td>@usuario.Cedula</td>
+                        <td>@usuario.Ciudad</td>
+                        <td>@usuario.FechaNacimiento</td>
+                        <td>@usuario.Celular</td>
+                        <td>
+                            <a class="btn btn-warning"
+                            asp-controller="Usuarios" asp-action="Edit" asp-route-id="@usuario.UsuarioId">
+                            Editar
+                            </a>
+                            <a class="btn btn-danger"
+                            asp-controller="Usuarios" asp-action="Delete" asp-route-id="@usuario.UsuarioId">
+                            Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
