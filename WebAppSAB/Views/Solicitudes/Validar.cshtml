@@ -1,0 +1,73 @@
+﻿@using Modelo.Entidades
+@model Solicitud
+
+@{
+    ViewData["Title"] = "Validar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Solicitud</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form method="post" asp-action="Validar">
+                <div class="form-group">
+                    <label class="control-label">Solicitud</label>
+                    <input class="form-control" asp-for="SolicitudId" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Usuario</label>
+                    <input class="form-control" asp-for="Usuarios.Apellidos" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Observacion</label>
+                    <input class="form-control" asp-for="Reportes.Observacion" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Monto Total</label>
+                    <input class="form-control" asp-for="MontoTotal" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <input class="form-control" asp-for="Estado" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Validar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-8">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr> 
+                            <td>Capital</td>
+                            <td>Intereses</td>
+                            <td>Cuota Mensual</td>
+                            <td>Saldo Total</td>
+                            <td>Aprobado</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Pagos)
+                        {
+                            <tr>
+                                <td>@item.Capital</td>
+                                <td>@item.Interes</td>
+                                <td>@item.CuotaMensual</td>
+                                <td>@item.SaldoTotal</td>
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+

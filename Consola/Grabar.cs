@@ -20,23 +20,25 @@ namespace Consola
             var listaOfertas = (List<Oferta>)listas[ListasTipo.Ofertas];
             var listaReportes = (List<Reporte>)listas[ListasTipo.Reportes];
             var listaSolicitudes = (List<Solicitud>)listas[ListasTipo.Solicitudes];
-            var listaTablasPagos = (List<TablaPagos>)listas[ListasTipo.TablasPagos];
             var listaUsuarios = (List<Usuario>)listas[ListasTipo.Usuarios];
 
 
-            //Grabar
-            AprobacionBecaDB db = new AprobacionBecaDB();
+            // Grabar
+            using (AprobacionBecaDB db = AprobacionBecaDBBuilder.Crear())
+            {
+                // Se asegura que se borre y vuelva a crear la base de datos
+                db.PreparaDB();
+                // Agrega los listados
+                db.Configuraciones.AddRange(listaConfiguracion);
+                db.Ingresos.AddRange(listaIngresos);
+                db.Instituciones.AddRange(listaInstituciones);
+                db.Ofertas.AddRange(listaOfertas);
+                db.Reportes.AddRange(listaReportes);
+                db.Solicitudes.AddRange(listaSolicitudes);
+                db.Usuarios.AddRange(listaUsuarios);
 
-            db.Configuraciones.AddRange(listaConfiguracion);
-            db.Ingresos.AddRange(listaIngresos);
-            db.Instituciones.AddRange(listaInstituciones);
-            db.Ofertas.AddRange(listaOfertas);
-            db.Reportes.AddRange(listaReportes);
-            db.Solicitudes.AddRange(listaSolicitudes);
-            db.Pagos.AddRange(listaTablasPagos);
-            db.Usuarios.AddRange(listaUsuarios);
-
-            db.SaveChanges();
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -41,7 +41,9 @@
                 </div>      
                 <div class="form-group">
                     <label class="control-label">Modalidad: </label>
-                    <input class="form-control" asp-for="Modalidad" disabled/>
+                    <select class="form-control" 
+                        asp-for="Modalidad" asp-items="Html.GetEnumSelectList<ModalidadOferta>()" disabled >
+                    </select>
                 </div>
 
                 <div class="form-group">

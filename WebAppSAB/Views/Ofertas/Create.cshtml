@@ -36,10 +36,13 @@
                 <div class="form-group">
                     <label class="control-label">Duración: </label>
                     <input class="form-control" asp-for="Duracion" />
-                </div>      
+                </div>
+
                 <div class="form-group">
-                    <label class="control-label">Modalidad: </label>
-                    <input class="form-control" asp-for="Modalidad" />
+                    <label class="control-label">Modalidad:</label>
+                    <select class="form-control" 
+                        asp-for="Modalidad" asp-items="Html.GetEnumSelectList<ModalidadOferta>()" >
+                    </select>
                 </div>
 
                 <div class="form-group">

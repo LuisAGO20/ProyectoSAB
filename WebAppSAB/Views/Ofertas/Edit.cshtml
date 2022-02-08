@@ -42,7 +42,9 @@
                 </div>      
                 <div class="form-group">
                     <label class="control-label">Modalidad: </label>
-                    <input class="form-control" asp-for="Modalidad" />
+                    <select class="form-control" 
+                        asp-for="Modalidad" asp-items="Html.GetEnumSelectList<ModalidadOferta>()" >
+                    </select>
                 </div>
 
                 <div class="form-group">

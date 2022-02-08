@@ -1,0 +1,70 @@
+﻿@using Modelo.Entidades
+@model IEnumerable<Solicitud>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Solicitudes</h1>
+
+<div class="container">
+
+    @*Mensaje de confirmación*@
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de Solicitudes</h3>
+        </div>        
+    </div>
+
+    <div class="row">
+        @if (Model.Count() >0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr> 
+                        <td>Solicitud Id</td>
+                        <td>Usuario</td>
+                        <td>Fecha</td>
+                        <td>Monto Total</td>
+                        <td>Observacion</td>
+                        <td>Estado</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SolicitudId</td>
+                            <td>@item.Usuarios.Nombres @item.Usuarios.Apellidos</td>
+                            <td>@item.FechaSolicitud</td>
+                            <td>@item.MontoTotal</td>
+                            <td>@item.Reportes.Observacion</td>
+                            <td>@item.Estado</td>
+                            <td>
+                                <a class="btn btn-warning"
+                                    asp-controller="Solicitudes" asp-action="Validar" asp-route-id="@item.SolicitudId">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

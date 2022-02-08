@@ -24,9 +24,34 @@ namespace WebAppSAB
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string DBTipo = Configuration["DBTipo"];
+            string DBConnStr = Configuration.GetConnectionString(DBTipo);
+            DbContextOptions<AprobacionBecaDB> contextOptions;
+
+            switch (DBTipo)
+            {
+                case "SqlServer":
+                    contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
+                        .UseSqlServer(DBConnStr)
+                        .Options;
+                    break;
+                case "Postgres":
+                    contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
+                        .UseNpgsql(DBConnStr)
+                        .Options;
+                    break;
+                default: // Por defecto usa la memoria como base de datos
+                    contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
+                        .UseInMemoryDatabase(DBConnStr)
+                        .Options;
+                    break;
+            }
+
             services.AddDbContext<AprobacionBecaDB>(options =>
-                   options.UseSqlServer("Server=LAPTOP-B130UKF6\\SQLEXPRESS; initial catalog = ProyectoSAB; trusted_connection = true; ")
-               );
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("SqlServer")
+                )
+            );
 
             services.AddControllersWithViews();
         }

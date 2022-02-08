@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ModeloDB
 {
-    public class AprobacionBecaDB:DbContext
+    public class AprobacionBecaDB : DbContext
     {
         public AprobacionBecaDB()
         {
@@ -15,9 +15,14 @@ namespace ModeloDB
         public AprobacionBecaDB(DbContextOptions<AprobacionBecaDB> options)
             : base(options)
         {
-
         }
 
+        // Se asegura el borrado y la creación de la base de datos
+        public void PreparaDB()
+        {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
 
         // DECLARACIÓN DE LAS ENTIDADES DEL MODELO
         public DbSet<Configuracion> Configuraciones { get; set; }
@@ -30,15 +35,16 @@ namespace ModeloDB
         public DbSet<TablaPagos> Pagos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
-        /*
         // CONFIGURACIÓN DE LA CONEXIÓN
         override protected void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(
-            "Server = LAPTOP-B130UKF6\\SQLEXPRESS; initial catalog=ProyectoSAB; trusted_connection=true;"
-            );
+            // Si no se ha configurado la conección la configura con SqlServer
+            if (!options.IsConfigured)
+            {
+                options.UseSqlServer("Server = LAPTOP-B130UKF6\\SQLEXPRESS; initial catalog=ProyectoSAB; trusted_connection=true;");
+                // .LogTo(Console.WriteLine, LogLevel.Information);  // Para activar el modo debug
+            }
         }
-        */
 
         // CONFIGURAR EL MODELO DE LAS ENTIDADES
         protected override void OnModelCreating(ModelBuilder model)
@@ -96,9 +102,9 @@ namespace ModeloDB
                 });
 
 
-            // ENTIDAD SIN CLAVE PRIMARIA
+            // La clase configuración tiene clave primaria de tipo distinta que int
             model.Entity<Configuracion>()
-                .HasNoKey();
+                .HasKey(configuracion => configuracion.NombreInstitucion);
         }
     }
 }
