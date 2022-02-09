@@ -10,7 +10,7 @@ namespace Consola
     public class AprobacionBecaDBBuilder
     {
         const string DBTipo = "DBTipo";
-        enum DBTipoConn { SqlServer, Postgres, Memoria }
+        enum DBTipoConn { SqlServer, Postgres, Memoria, MySql }
         static AprobacionBecaDB db;
 
         public static AprobacionBecaDB Crear()
@@ -31,6 +31,11 @@ namespace Consola
                 case nameof(DBTipoConn.Postgres):
                     contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
                         .UseNpgsql(conn)
+                        .Options;
+                    break;
+                case nameof(DBTipoConn.MySql):
+                    contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
+                        .UseMySQL(conn)
                         .Options;
                     break;
                 default: // Por defecto usa la memoria como base de datos

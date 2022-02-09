@@ -1,0 +1,82 @@
+﻿@using Modelo.Entidades
+@model IEnumerable<Egresos>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Egresos</h1>
+
+<div class="container">
+
+    @*Mensaje de confirmación*@
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">
+                    &times;
+                </span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de Egresos</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block"
+                asp-controller="Egresos" asp-action="Create" >
+                Nuevo Egreso
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (Model.Count() >0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr> 
+                        <td>Id Egreso</td>
+                        <td>Usuario</td>
+                        <td>Pago Luz</td>
+                        <td>Pago Agua</td>
+                        <td>Pago Telefono</td>
+                        <td>Pago Internet</td>
+                        <td>Total Egresos</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.EgresosId</td>
+                            <td>@item.Usuarios.Apellidos @item.Usuarios.Nombres</td>
+                            <td>@item.Luz</td>
+                            <td>@item.Agua</td>
+                            <td>@item.Telefono</td>
+                            <td>@item.Internet</td>
+                            <td>@item.TotalEgresos</td>
+                            
+                            <td>
+                                <a class="btn btn-warning"
+                                    asp-controller="Egresos" asp-action="Edit" asp-route-id="@item.EgresosId">
+                                    Editar
+                                </a>
+                                <a class="btn btn-danger"
+                                    asp-controller="Egresos" asp-action="Delete" asp-route-id="@item.EgresosId">
+                                    Borrar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

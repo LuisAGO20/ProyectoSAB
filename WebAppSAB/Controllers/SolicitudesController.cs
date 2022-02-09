@@ -31,7 +31,9 @@ namespace WebAppSAB.Controllers
         {
             var solicitud = db.Solicitudes
                 .Include(solicitud => solicitud.Usuarios)
+                    .ThenInclude(usuario => usuario.Apellidos)
                 .Include(solicitud => solicitud.Reportes)
+                    .ThenInclude(reportes => reportes.Observacion)
                 .Include(solicitud => solicitud.Pagos)
                     .ThenInclude(pagos => pagos.Capital)
                 .Include(solicitud => solicitud.Pagos)

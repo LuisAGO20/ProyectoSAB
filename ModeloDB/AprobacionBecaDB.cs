@@ -27,6 +27,7 @@ namespace ModeloDB
         // DECLARACIÓN DE LAS ENTIDADES DEL MODELO
         public DbSet<Configuracion> Configuraciones { get; set; }
         public DbSet<Ingresos> Ingresos { get; set; }
+        public DbSet<Egresos> Egresos { get; set; }
         public DbSet<Institucion> Instituciones { get; set; }
         public DbSet<Oferta> Ofertas { get; set; }
         public DbSet<Preoferta> Preofertas { get; set; }
@@ -54,6 +55,11 @@ namespace ModeloDB
                 .HasOne(u => u.ResumenIngresos)
                 .WithOne(i => i.Usuarios)
                 .HasForeignKey<Ingresos>(i => i.UsuarioId);
+
+            model.Entity<Usuario>()
+                .HasOne(u => u.ResumenEgresos)
+                .WithOne(e => e.Usuarios)
+                .HasForeignKey<Egresos>(e => e.UsuarioId);
 
 
             // RELACION DE UNO A MUCHOS

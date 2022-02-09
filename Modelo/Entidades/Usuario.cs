@@ -17,6 +17,9 @@ namespace Modelo.Entidades
         // RELACION CON INGRESOS 1:1
         public Ingresos ResumenIngresos { get; set; }
 
+        // RELACION CON EGRESOS 1:1
+        public Egresos ResumenEgresos { get; set; }
+
         // RELACION CON SOLICITUD 1:N
         public ICollection<Solicitud> Solicitudes { get; set; }
     }

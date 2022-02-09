@@ -40,6 +40,11 @@ namespace WebAppSAB
                         .UseNpgsql(DBConnStr)
                         .Options;
                     break;
+                case "MySql":
+                    contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
+                        .UseMySQL(DBConnStr)
+                        .Options;
+                    break;
                 default: // Por defecto usa la memoria como base de datos
                     contextOptions = new DbContextOptionsBuilder<AprobacionBecaDB>()
                         .UseInMemoryDatabase(DBConnStr)

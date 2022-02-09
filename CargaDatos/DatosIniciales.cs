@@ -9,7 +9,7 @@ namespace CargaDatos
     {
         public enum ListasTipo
         {
-            Configuracion, Ingresos, Instituciones, Ofertas,
+            Configuracion, Ingresos, Egresos, Instituciones, Ofertas,
             Preofertas, Reportes, Solicitudes, TablasPagos,
             Usuarios
         }
@@ -131,6 +131,57 @@ namespace CargaDatos
             List<Ingresos> listaIngresos = new List<Ingresos>()
             {
                 Ingreso1, Ingreso2, Ingreso3, Ingreso4
+            };
+            #endregion
+
+            // --------------------------------------------
+            // Lista de Egresos
+            // --------------------------------------------
+            #region
+            Egresos Egreso1 = new Egresos()
+            {
+                Luz = 100,
+                Agua = 50,
+                Telefono = 20,
+                Internet = 45,
+                TotalEgresos = 215,
+                Usuarios = usuario1
+            };
+
+            Egresos Egreso2 = new Egresos()
+            {
+                Luz = 80,
+                Agua = 60,
+                Telefono = 30,
+                Internet = 55,
+                TotalEgresos = 225,
+                Usuarios = usuario2
+            };
+
+            Egresos Egreso3 = new Egresos()
+            {
+                Luz = 150,
+                Agua = 70,
+                Telefono = 25,
+                Internet = 60,
+                TotalEgresos = 305,
+                Usuarios = usuario3
+            };
+
+            Egresos Egreso4 = new Egresos()
+            {
+                Luz = 100,
+                Agua = 30,
+                Telefono = 10,
+                Internet = 65,
+                TotalEgresos = 205,
+                Usuarios = usuario4
+            };
+
+
+            List<Egresos> listaEgresos = new List<Egresos>()
+            {
+                Egreso1, Egreso2, Egreso3, Egreso4
             };
             #endregion
 
@@ -359,6 +410,7 @@ namespace CargaDatos
             {
                 { ListasTipo.Usuarios, listaUsuarios },
                 { ListasTipo.Ingresos, listaIngresos },
+                { ListasTipo.Egresos, listaEgresos },
                 { ListasTipo.Instituciones, listaInstituciones },
                 { ListasTipo.Ofertas,listaOfertas },
                 { ListasTipo.Preofertas,listaPreofertas },

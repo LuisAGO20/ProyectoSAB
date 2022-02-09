@@ -16,6 +16,7 @@ namespace Consola
             // Extraer del diccionario las listas
             var listaConfiguracion = (List<Configuracion>)listas[ListasTipo.Configuracion];
             var listaIngresos = (List<Ingresos>)listas[ListasTipo.Ingresos];
+            var listaEgresos = (List<Egresos>)listas[ListasTipo.Egresos];
             var listaInstituciones = (List<Institucion>)listas[ListasTipo.Instituciones];
             var listaOfertas = (List<Oferta>)listas[ListasTipo.Ofertas];
             var listaReportes = (List<Reporte>)listas[ListasTipo.Reportes];
@@ -31,6 +32,7 @@ namespace Consola
                 // Agrega los listados
                 db.Configuraciones.AddRange(listaConfiguracion);
                 db.Ingresos.AddRange(listaIngresos);
+                db.Egresos.AddRange(listaEgresos);
                 db.Instituciones.AddRange(listaInstituciones);
                 db.Ofertas.AddRange(listaOfertas);
                 db.Reportes.AddRange(listaReportes);
